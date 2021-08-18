@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CMS-Register</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="logo"><img src="assets/logos/LOGO only for dark.png"></div>
+    <div class="img-wave"><img src="assets/images/wave.png"></div>
+    <div class="center register">
+      <h1>Sign-Up</h1>
+      <form id="signupForm">
+        <div class="inline_field">
+          <div class="txt_field" style="margin-right: 30px;">
+            <input type="text" id="signup-fname" required>
+            <span></span>
+            <label for="signup-fname">First name</label>
+          </div>
+          <div class="txt_field">
+            <input type="text" id="lname" required>
+            <span></span>
+            <label for="signup-lname">Last name</label>
+          </div>
+        </div>
+        <div class="radio_field">
+          <div class="gender">
+            <input type="radio" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label>
+          </div>
+          <div class="gender">
+            <input type="radio" id="female" name="gender" value="Female" required>
+            <label for="female">Female</label>
+          </div>
+          <div class="gender">
+            <input type="radio" id="others" name="gender" value="Others" required>
+            <label for="others">Others</label>
+          </div>
+        </div>
+        <div class="txt_field" style="margin-top:12px;">
+          <input type="email" required>
+          <span></span>
+          <label>Email</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" required>
+          <span></span>
+          <label>Password</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" required>
+          <span></span>
+          <label>Confirm Password</label>
+        </div>
+        <!-- <div class="pass">Forgot Password?</div> -->
+        <button type="button" class="click-button" id="register-button" onclick="success()">Register</button>
+        <div class="signup_link">
+          Already a member? <a href="login.html">Login</a>
+        </div>
+      </form>
+    </div>
+
+    <script type="text/javascript">
+      function success(){
+        alert("Registered Successfully!");
+      }
+    </script>
+
+  </body>
+</html>
