@@ -10,6 +10,7 @@
     <div class="img-wave"><img src="assets/images/wave.png"></div>
     <div class="center register">
       <h1>Sign-Up</h1>
+      <div class="alert">Registered Successfully</div>
       <form id="signupForm">
         <div class="inline_field">
           <div class="txt_field" style="margin-right: 30px;">
@@ -18,12 +19,12 @@
             <label for="signup-fname">First name</label>
           </div>
           <div class="txt_field">
-            <input type="text" id="lname" required>
+            <input type="text" id="signup-lname" required>
             <span></span>
             <label for="signup-lname">Last name</label>
           </div>
         </div>
-        <div class="radio_field">
+        <div class="radio_field" id="signup-gender">
           <div class="gender">
             <input type="radio" id="male" name="gender" value="Male" required>
             <label for="male">Male</label>
@@ -38,33 +39,32 @@
           </div>
         </div>
         <div class="txt_field" style="margin-top:12px;">
-          <input type="email" required>
+          <input type="email" id="signup-email" required>
           <span></span>
           <label>Email</label>
         </div>
         <div class="txt_field">
-          <input type="password" required>
+          <input type="password" id="signup-password" required>
           <span></span>
           <label>Password</label>
         </div>
         <div class="txt_field">
-          <input type="password" required>
+          <input type="password"id="signup-confirmPassword" required>
           <span></span>
           <label>Confirm Password</label>
         </div>
         <!-- <div class="pass">Forgot Password?</div> -->
-        <button type="button" class="click-button" id="register-button" onclick="success()">Register</button>
+        <button type="submit" class="click-button" id="register-button">Register</button>
         <div class="signup_link">
           Already a member? <a href="login.html">Login</a>
         </div>
       </form>
     </div>
 
-    <script type="text/javascript">
-      function success(){
-        alert("Registered Successfully!");
-      }
-    </script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+  <script src="js/signup-auth.js" type="text/javascript"></script>
 
   </body>
 </html>
