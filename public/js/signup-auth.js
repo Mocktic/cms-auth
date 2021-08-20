@@ -15,7 +15,7 @@
   firebase.analytics();
 
   // Reference messages collection
-var messagesRef = firebase.database().ref('message');
+var messagesRef = firebase.database().ref('users');
 
 // Listen for form submit
 // var phoneNum = document.getElementById('phone-num').value;
@@ -25,7 +25,9 @@ document.getElementById('signupForm').addEventListener('submit', submitForm);
 // Submit form
 function submitForm(e){
   e.preventDefault();
- 
+
+  //update user details
+
   // Get values
   var uid;
   var phone;
@@ -35,6 +37,7 @@ if (user !== null) {
     console.log("  Provider-specific UID: " + profile.uid);
     phone = profile.uid;
    });
+     
     var useruid = user.uid;
     uid = useruid;
 }
@@ -51,9 +54,29 @@ console.log(user.uid);
 
   if(getInputVal('signup-password') == getInputVal('signup-confirmPassword')){
   var password = getInputVal('signup-password'); 
+//update auth
+   //Email update
+    user.updateEmail(email).then(() => {
+      // Update successful
+      // ...
+    }).catch((error) => {
+      // An error occurred
+      // ...
+    });
+
+    const newPassword = password;
+
+    user.updatePassword(newPassword).then(() => {
+      // Update successful.
+    }).catch((error) => {
+      // An error ocurred
+      // ...
+    });
+//update auth ends
+  
 
     // Save message
-  saveMessage(fname, lname, genderVal, email, phone, password, uid);
+  saveMessage(fname, lname, genderVal, email, phone, uid);
 
     // Show alert
   document.querySelector('.alert').innerHTML = 'Registered Successfully!';
@@ -85,7 +108,7 @@ function getInputVal(id){
 }
 
 // Save message to firebase
-function saveMessage(fname, lname, genderVal, email, phone, password, uid){
+function saveMessage(fname, lname, genderVal, email, phone, uid){
   var newMessageRef = messagesRef.push();
   newMessageRef.set({
     First_Name: fname,
@@ -93,7 +116,6 @@ function saveMessage(fname, lname, genderVal, email, phone, password, uid){
     gender:genderVal,
     Email:email,
     Phone:phone,
-    password:password,
     uid:uid
   });
 }

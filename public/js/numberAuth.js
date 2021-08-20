@@ -30,13 +30,33 @@ function phoneAuth() {
 }
 
 function codeverify() {
+    
+    //get the number
+    var number=document.getElementById('phone-num').value;
     var code=document.getElementById("verificationCode").value;
     coderesult.confirm(code).then(function (result) {
-        alert("Successfully registered");
-        window.location.href = "https://basicfire-84b90.web.app/register.html";
+        alert("Phone number verified successfully!");
         var user=result.user;
         console.log(user);
+        dataInDb();
     }).catch(function (error) {
         alert(error.message);
     });
 }
+
+function dataInDb(){
+    const userDetail = firebase.auth().currentUser;
+        var userId = userDetail.uid;
+        var database = firebase.database();
+        // [START rtdb_write_new_user]
+        function writeUserData(userId, number) {
+          firebase.database().ref('users/' + userId).set({
+            Phone: number,
+            uid: userId
+          });
+
+        }
+        console.log(userDetail.uid);
+        window.location.href = "../register.html";
+}
+
