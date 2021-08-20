@@ -15,16 +15,30 @@
   firebase.analytics();
 
   // Reference messages collection
-var messagesRef = firebase.database().ref('messages');
+var messagesRef = firebase.database().ref('message');
 
 // Listen for form submit
+// var phoneNum = document.getElementById('phone-num').value;
 document.getElementById('signupForm').addEventListener('submit', submitForm);
+
 
 // Submit form
 function submitForm(e){
   e.preventDefault();
  
   // Get values
+  var uid;
+  var phone;
+ const user = firebase.auth().currentUser;
+if (user !== null) {
+     user.providerData.forEach((profile) => {
+    console.log("  Provider-specific UID: " + profile.uid);
+    phone = profile.uid;
+   });
+    var useruid = user.uid;
+    uid = useruid;
+}
+console.log(user.uid);
   var fname = getInputVal('signup-fname');
   var lname = getInputVal('signup-lname');
   var genderVal = document.getElementsByName('gender');
@@ -36,10 +50,10 @@ function submitForm(e){
   var email = getInputVal('signup-email');
 
   if(getInputVal('signup-password') == getInputVal('signup-confirmPassword')){
-  var password = getInputVal('signup-password');
-    
+  var password = getInputVal('signup-password'); 
+
     // Save message
-  saveMessage(fname, lname, genderVal, email, password);
+  saveMessage(fname, lname, genderVal, email, phone, password, uid);
 
     // Show alert
   document.querySelector('.alert').innerHTML = 'Registered Successfully!';
@@ -71,13 +85,15 @@ function getInputVal(id){
 }
 
 // Save message to firebase
-function saveMessage(fname, lname, genderVal, email, password){
+function saveMessage(fname, lname, genderVal, email, phone, password, uid){
   var newMessageRef = messagesRef.push();
   newMessageRef.set({
-    FirstName: fname,
-    LastName:lname,
+    First_Name: fname,
+    Last_Name:lname,
     gender:genderVal,
-    email:email,
-    password:password
+    Email:email,
+    Phone:phone,
+    password:password,
+    uid:uid
   });
 }
