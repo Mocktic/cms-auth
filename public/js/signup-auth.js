@@ -15,7 +15,7 @@
   firebase.analytics();
 
   // Reference messages collection
-var messagesRef = firebase.database().ref('messages');
+var messagesRef = firebase.database().ref('uid');
 
 // Listen for form submit
 document.getElementById('signupForm').addEventListener('submit', submitForm);
@@ -58,7 +58,8 @@ function submitForm(e){
   document.querySelector('.alert').style.color = 'red';
   document.querySelector('.alert').style.display = 'block';
   setTimeout(function(){
-    document.querySelector('.alert').style.display = 'none';
+    document.querySelector('.alert').st
+    yle.display = 'none';
   },5000);
 
 }
@@ -72,12 +73,17 @@ function getInputVal(id){
 
 // Save message to firebase
 function saveMessage(fname, lname, genderVal, email, password){
+  const userAuth = await firebase.auth().createUserWithEmailAndPassword(email, password);
   var newMessageRef = messagesRef.push();
   newMessageRef.set({
     FirstName: fname,
     LastName:lname,
     gender:genderVal,
     email:email,
-    password:password
+    uid: userAuth.uid,
   });
 }
+
+
+
+
