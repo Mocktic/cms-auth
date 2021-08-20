@@ -39,7 +39,7 @@ function submitForm(e){
   var password = getInputVal('signup-password');
     
     // Save message
-  saveMessage(fname, lname, genderVal, email, password);
+  saveMessage(fname, lname, genderVal, email);
 
     // Show alert
   document.querySelector('.alert').innerHTML = 'Registered Successfully!';
@@ -71,13 +71,12 @@ function getInputVal(id){
 }
 
 // Save message to firebase
-function saveMessage(fname, lname, genderVal, email, password){
+function saveMessage(fname, lname, genderVal, email){
   var newMessageRef = messagesRef.push();
   newMessageRef.set({
     FirstName: fname,
     LastName:lname,
     gender:genderVal,
     email:email,
-    password:password
   });
 }
